@@ -1,8 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 
-<div class="container">
     <div class="row">
         <div class="col">
             <h2>Welcome to Admin Dashboard</h2>
@@ -20,7 +19,6 @@
             </form>
         </div>
     </div>
-</div>
 
 @endsection
 

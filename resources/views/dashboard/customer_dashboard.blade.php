@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div class="container">
     <div class="row">
         <div class="col">
             <h2>Welcome to customer Dashboard</h2>
@@ -20,7 +19,6 @@
             </form>
         </div>
     </div>
-</div>
 
 @endsection
 
