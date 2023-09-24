@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+{{-- @extends('layouts.admin')
 
-@section('content')
+@section('content') --}}
 
     <div class="row">
         <div class="col">
@@ -20,5 +20,5 @@
         </div>
     </div>
 
-@endsection
+{{-- @endsection --}}
 

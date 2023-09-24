@@ -10,6 +10,6 @@ class FrontendController extends Controller
         return view('frontend.welcome');
     }
     public function customerDashboard(){
-        return view('frontend.welcome');
+        return view('dashboard.customer_dashboard');
     }
 }

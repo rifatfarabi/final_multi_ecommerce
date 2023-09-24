@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [FrontendController::class, 'index'])->name('welcome');
-Route::get('customer/dashboard', [FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
+Route::get('/customer/dashboard', [FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
 
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('admin/login',[AdminLoginController::class,'adminLogin'])->name('admin.login');
+Route::get('/admin/login',[AdminLoginController::class,'adminLogin'])->name('admin.login');
 Route::get('/admin/dashboard',[AdminDashboardController::class,'adminDashboard'])->name('admin.dashboard');
