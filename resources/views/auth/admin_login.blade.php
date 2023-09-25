@@ -14,7 +14,7 @@
         #login .container #login-row #login-column #login-box {
             margin-top: 120px;
             max-width: 600px;
-            height: 320px;
+            height: 360px;
             border: 1px solid #9C9C9C;
             background-color: #EAEAEA;
         }
@@ -45,15 +45,23 @@
                             @csrf
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
-                                @error('username')
-                                    <div class="error">{{ $message }}</div>
+                                <label for="email" class="text-info">Email:</label><br>
+                                <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
+
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="text" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="remember-me" class="text-info"><span>Remember me</span> <span><input

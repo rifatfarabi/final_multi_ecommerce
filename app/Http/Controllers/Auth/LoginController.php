@@ -52,4 +52,9 @@ class LoginController extends Controller
             return redirect('/');
         }
     }
+
+    protected function loggedOut(\Illuminate\Http\Request $request)
+    {
+        return redirect()->route('admin.login');
+    }
 }

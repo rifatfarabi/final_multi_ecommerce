@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\CustomerIndexController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [FrontendController::class, 'index'])->name('welcome');
+Route::get('/', [CustomerIndexController::class, 'index'])->name('welcome');
 Route::get('/customer/dashboard', [FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
 
 Auth::routes();
