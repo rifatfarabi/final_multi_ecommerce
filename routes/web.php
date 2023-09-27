@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [CustomerIndexController::class, 'index'])->name('welcome');
+Route::get('/', [FrontendController::class, 'index'])->name('welcome');
 Route::get('/customer/dashboard', [FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
 
 Auth::routes();

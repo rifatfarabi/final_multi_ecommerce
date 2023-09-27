@@ -55,12 +55,13 @@ class LoginController extends Controller
 
     protected function logout(\Illuminate\Http\Request $request)
     {
-        Auth::logout();
-        if(Auth::user()->role == 'customer'){
-            return redirect('/');
-        }else{
-            return redirect()->route('admin.login');
+            if(Auth::user()->role == 'customer'){
+                Auth::logout();
+                return redirect('/');
+            }else{
+                Auth::logout();
+                return redirect()->route('admin.login');
+            }
         }
 
-    }
 }
