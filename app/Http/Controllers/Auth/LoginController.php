@@ -53,8 +53,14 @@ class LoginController extends Controller
         }
     }
 
-    protected function loggedOut(\Illuminate\Http\Request $request)
+    protected function logout(\Illuminate\Http\Request $request)
     {
-        return redirect()->route('admin.login');
+        Auth::logout();
+        if(Auth::user()->role == 'customer'){
+            return redirect('/');
+        }else{
+            return redirect()->route('admin.login');
+        }
+
     }
 }
