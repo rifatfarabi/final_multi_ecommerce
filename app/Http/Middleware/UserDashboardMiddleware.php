@@ -16,7 +16,7 @@ class UserDashboardMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role != 'user'){
+        if(Auth::user()->role != 'customer'){
             abort(401);
         }
         return $next($request);

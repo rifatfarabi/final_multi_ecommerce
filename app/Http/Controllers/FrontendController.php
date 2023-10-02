@@ -6,13 +6,9 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware(['auth','user']);
-    // }
-
-    public function index(){
-        return view('frontend.welcome');
+    public function __construct()
+    {
+        $this->middleware(['auth','customer']);
     }
 
     public function customerDashboard(){
