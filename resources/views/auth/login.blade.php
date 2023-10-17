@@ -64,6 +64,11 @@
                                 @endif
                             </div>
                         </div>
+                       <div>
+                            <a class="btn btn-link" href="{{ route('register') }}">
+                                {{ __('Register Now') }}
+                            </a>
+                       </div>
                     </form>
                 </div>
             </div>
