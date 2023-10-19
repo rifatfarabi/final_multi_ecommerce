@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CustomerIndexController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +29,9 @@ Route::get('/customer/dashboard',[FrontendController::class, 'customerDashboard'
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/admin/login',[AdminLoginController::class,'adminLogin'])->name('admin.login');
 Route::get('/admin/dashboard',[AdminDashboardController::class,'adminDashboard'])->name('admin.dashboard');
+Route::get('/logout', [LoginController::class, 'logout']);
