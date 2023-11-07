@@ -1,47 +1,59 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="aiz-titlebar text-left mx-3 mt-2 mb-3">
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="h3">All Categories</h1>
         </div>
-        <div class="col-md-6 text-md-right">
+        <div class="col-md-6 text-md-end">
             <a href="{{ route('categories.create') }}" class="btn btn-primary">
                 <span>Add New category</span>
             </a>
         </div>
     </div>
 </div>
-<div class="card">
+<div class="card mx-3">
     <div class="card-header d-block d-md-flex">
         <h5 class="mb-0 h6">Categories</h5>
-        <form class="" id="sort_categories" action="" method="GET">
+        {{-- <form class="" id="sort_categories" action="" method="GET">
             <div class="box-inline pad-rgt pull-left">
                 <div class="" style="min-width: 200px;">
-                    <input type="text" class="form-control" id="search" name="search"@isset($sort_search) value="{{ $sort_search }}" @endisset placeholder="{{ translate('Type name & Enter') }}">
+                    <input type="text" class="form-control" id="search" name="search"@isset($sort_search) value="{{ $sort_search }}" @endisset placeholder="Type name & Enter">
                 </div>
             </div>
-        </form>
+        </form> --}}
     </div>
     <div class="card-body">
         <table class="table aiz-table mb-0">
             <thead>
                 <tr>
-                    <th data-breakpoints="lg">#</th>
+                    <th>#</th>
                     <th>Name</th>
-                    <th data-breakpoints="lg">Parent Category</th>
-                    <th data-breakpoints="lg">Order Level</th>
-                    <th data-breakpoints="lg">Level</th>
-                    <th data-breakpoints="lg">Banner</th>
-                    <th data-breakpoints="lg">Icon</th>
-                    <th data-breakpoints="lg">Featured</th>
-                    <th data-breakpoints="lg">Commission</th>
-                    <th width="10%" class="text-right">{{translate('Options')}}</th>
+                    <th>Icon</th>
+                    <th>Featured</th>
+                    <th width="10%" class="text-right">{{('Options')}}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($categories as $key => $category)
+                    <tr>
+                        <td>{{ ($key+1) + ($categories->currentPage() - 1)*$categories->perPage() }}</td>
+                        <td>{{ $category->name }}</td>
+                        <td>{{ $category->icon }}</td>
+                        <td>{{ $category->featured }}</td>
+
+                        <td class="text-right">
+                            <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('categories.edit', $category->id )}}" title="Edit') }}">
+                                <i class="las la-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('categories.destroy', $category->id)}}" title="Delete">
+                                <i class="las la-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+                {{-- @foreach($categories as $key => $category)
                     <tr>
                         <td>{{ ($key+1) + ($categories->currentPage() - 1)*$categories->perPage() }}</td>
                         <td>{{ $category->getTranslation('name') }}</td>
@@ -89,11 +101,11 @@
                             </a>
                         </td>
                     </tr>
-                @endforeach
+                @endforeach --}}
             </tbody>
         </table>
         <div class="aiz-pagination">
-            {{ $categories->appends(request()->input())->links() }}
+            {{ $categories->links() }}
         </div>
     </div>
 </div>
