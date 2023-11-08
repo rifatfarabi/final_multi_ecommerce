@@ -25,11 +25,18 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-        // dd(request()->all());
+
+        if($request->featured == "1")
+        {
+            $fe= true;
+        }else
+        {
+            $fe= false;
+        }
         $category = Category::create([
             "name" => $request->name,
             "icon" => $request->icon,
-            "featured" => $request->featured
+            "featured" => $fe
         ]);
 
         return redirect()->route('categories.index')->with('success', 'Category created Successfully');
@@ -43,18 +50,28 @@ class CategoryController extends Controller
 
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('category.edit', compact('category'));
     }
 
 
     public function update(UpdateCategoryRequest $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->update([
+            "name" => $request->name,
+            "icon" => $request->icon,
+            "featured" => $request->featured
+        ]);
+
+       return redirect()->route('categories.index')->with('success','Category Updated Successfully');
     }
 
 
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('categories.index')->with('success','Category Updated Successfully');
     }
 }
