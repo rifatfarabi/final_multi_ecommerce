@@ -25,6 +25,13 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
+        if($request->hasFile('icon'))
+        {
+            $file = $request->file('icon');
+            $extention = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extention;
+            $file->move('uploads/categories/', $fileName);
+        }
 
         if($request->featured == "1")
         {
@@ -33,13 +40,14 @@ class CategoryController extends Controller
         {
             $fe= false;
         }
+
         $category = Category::create([
             "name" => $request->name,
-            "icon" => $request->icon,
+            "icon" => $fileName,
             "featured" => $fe
         ]);
 
-        return redirect()->route('categories.index')->with('success', 'Category created Successfully');
+        return redirect()->route('categories.index')->with('message', 'Category created Successfully');
     }
 
     public function show(string $id)
@@ -57,14 +65,32 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, string $id)
     {
+
         $category = Category::find($id);
+
+        if($request->hasFile('icon'))
+        {
+            $file = $request->file('icon');
+            $extention = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extention;
+            $file->move('uploads/categories/', $fileName);
+        }
+
+        if($request->featured == "1")
+        {
+            $fe= true;
+        }else
+        {
+            $fe= false;
+        }
+
         $category->update([
             "name" => $request->name,
-            "icon" => $request->icon,
-            "featured" => $request->featured
+            "icon" => $fileName,
+            "featured" => $fe
         ]);
 
-       return redirect()->route('categories.index')->with('success','Category Updated Successfully');
+       return redirect()->route('categories.index')->with('message','Category Updated Successfully');
     }
 
 
@@ -72,6 +98,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-        return redirect()->route('categories.index')->with('success','Category Updated Successfully');
+        return redirect()->route('categories.index')->with('message','Category Updated Successfully');
     }
 }

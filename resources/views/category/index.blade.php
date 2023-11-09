@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-6 text-md-end">
                 <a href="{{ route('categories.create') }}" class="btn btn-primary">
-                    <span>Add New category</span>
+                    <span>Add New Category</span>
                 </a>
             </div>
         </div>
