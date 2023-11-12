@@ -15,17 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('unit');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreignId('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->integer('purchase_qty');
-            $table->boolean('refundable');
-            $table->string('thumbnail_image');
+            $table->boolean('refundable')->nullable();
+            $table->string('thumbnail_image')->nullable();
             $table->integer('unit_price');
             $table->string('quantity');
-            $table->text('description');
-            $table->string('sku');
-            $table->boolean('featured');
+            $table->text('description')->nullable();
+            $table->string('sku')->nullable();
+            $table->boolean('featured')->nullable();
             $table->timestamps();
         });
     }

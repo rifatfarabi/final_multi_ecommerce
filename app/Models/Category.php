@@ -15,4 +15,7 @@ class Category extends Model
         "featured"
     ];
 
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

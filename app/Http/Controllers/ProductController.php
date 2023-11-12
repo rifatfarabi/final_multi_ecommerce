@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $brands = Brand::paginate(15);
-        return view('brand.index', compact('brands'));
+        $products = Product::paginate(15);
+        return view('products.index', compact('products'));
     }
 
     public function create()
     {
-
-        return view('brand.create');
+        return view('products.create');
     }
 
 
-    public function store(StoreBrandRequest $request)
+    public function store(StoreProductRequest $request)
     {
 
         if($request->hasFile('logo'))
@@ -30,7 +32,7 @@ class ProductController extends Controller
             $file->move('uploads/brands/', $fileName);
         }
 
-        $brand = Brand::create([
+        $brand = Product::create([
             "name" => $request->name,
             "meta_title" => $request->meta_title,
             "meta_description" => $request->meta_description,
@@ -38,7 +40,7 @@ class ProductController extends Controller
 
         ]);
 
-        return redirect()->route('brands.index')->with('message', 'Brands created Successfully');
+        return redirect()->route('products.index')->with('message', 'Product created Successfully');
     }
 
     public function show(string $id)
@@ -49,15 +51,15 @@ class ProductController extends Controller
 
     public function edit(string $id)
     {
-        $brand = Brand::find($id);
-        return view('brand.edit', compact('brand'));
+        $product = Product::find($id);
+        return view('product.edit', compact('product'));
     }
 
 
-    public function update(UpdateBrandRequest $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
 
-        $brand = Brand::find($id);
+        $product = Product::find($id);
 
         if($request->hasFile('logo'))
         {
@@ -67,21 +69,21 @@ class ProductController extends Controller
             $file->move('uploads/brands/', $fileName);
         }
 
-        $brand->update([
+        $product->update([
             "name" => $request->name,
             "logo" => $fileName,
             "meta_title" => $request->meta_title,
             "meta_description" => $request->meta_description,
         ]);
 
-       return redirect()->route('categories.index')->with('message','Brand Updated Successfully');
+       return redirect()->route('products.index')->with('message','Product Updated Successfully');
     }
 
 
     public function destroy(string $id)
     {
-        $brand = Brand::find($id);
-        $brand->delete();
-        return redirect()->route('brands.index')->with('message','Brand Updated Successfully');
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->route('products.index')->with('message','Product Updated Successfully');
     }
 }

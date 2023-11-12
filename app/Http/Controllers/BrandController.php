@@ -77,7 +77,7 @@ class BrandController extends Controller
             "meta_description" => $request->meta_description,
         ]);
 
-       return redirect()->route('categories.index')->with('message','Brand Updated Successfully');
+       return redirect()->route('brands.index')->with('message','Brand Updated Successfully');
     }
 
 

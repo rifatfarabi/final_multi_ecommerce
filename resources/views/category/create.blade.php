@@ -23,7 +23,7 @@
                         <div class="col-md-9">
                             <input class="form-control" type="file" id="icon" name="icon">
                         </div>
-                      </div>
+                    </div>
 
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="featured" name="featured" value="1">
