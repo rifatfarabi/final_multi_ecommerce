@@ -39,6 +39,9 @@ Route::get('/admin/login',[AdminLoginController::class,'adminLogin'])->name('adm
 Route::get('/admin/dashboard',[AdminDashboardController::class,'adminDashboard'])->name('admin.dashboard');
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::resource('products', ProductController::class);
-Route::resource('categories', CategoryController::class);
-Route::resource('brands', BrandController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::resource('products', ProductController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('brands', BrandController::class);
+});
+

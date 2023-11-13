@@ -20,11 +20,10 @@
                         <div class="row mb-3">
                             <label for="logo" class="col-md-3 form-label">Category</label>
                             <div class="col-md-9">
-                                <select class="form-select form-select-md" aria-label="Default select example">
-                                    <option selected>Meat & Poultry</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="form-select form-select-md" name="category_id" aria-label="Default select example">
+                                    @foreach ($categories as $cat)
+                                      <option value="{{ $cat->id}}">{{ $cat->name}}</option>
+                                    @endforeach
                                   </select>
                             </div>
                         </div>
@@ -32,11 +31,11 @@
                         <div class="row mb-3">
                             <label for="logo" class="col-md-3 form-label">Brand</label>
                             <div class="col-md-9">
-                                <select class="form-select form-select-md" aria-label="Default select example">
-                                    <option selected>Select Brand</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="form-select form-select-md" name="brand_id" aria-label="Default select example">
+                                    <option selected value="">Select Brand</option>
+                                    @foreach ($brands as $brand)
+                                     <option value="{{ $brand->id}}">{{ $brand->name}}</option>
+                                    @endforeach
                                   </select>
                             </div>
                         </div>
@@ -83,12 +82,6 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="quantity" class="col-md-3 form-label">Quantity</label>
-                            <div class="col-md-9">
-                                <input type="text" class="col-md-9 form-control" id="quantity" name="quantity">
-                            </div>
-                        </div>
 
                         <div class="row mb-3">
                             <label for="description" class="col-md-3 form-label">Description</label>

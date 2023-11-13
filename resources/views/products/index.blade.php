@@ -42,9 +42,10 @@
                         <tr>
                             <td>{{ $key + 1 + ($products->currentPage() - 1) * $products->perPage() }}</td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->logo }}</td>
-                            <td>{{ $product->meta_title }}</td>
-                            <td>{{ $product->meta_description }}</td>
+                            <td>{{ $product->user->name ?? "unknown" }}</td>
+                            <td>{{ $product->info }}</td>
+                            <td>{{ $product->quantity }}</td>
+                            <td>{{ $product->featured }}</td>
 
                             <td>
                                 <div class="d-flex">
