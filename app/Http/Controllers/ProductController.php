@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Auth;
+use File;
 
 class ProductController extends Controller
 {
@@ -29,7 +30,6 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-        // dd($request->all());
         if($request->hasFile('thumbnail_image'))
         {
             $file = $request->file('thumbnail_image');
@@ -82,8 +82,10 @@ class ProductController extends Controller
 
     public function edit(string $id)
     {
+        $categories = Category::all();
+        $brands = Brand::all();
         $product = Product::find($id);
-        return view('product.edit', compact('product'));
+        return view('products.edit', compact('product','categories','brands'));
     }
 
 
@@ -92,19 +94,49 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        if($request->hasFile('logo'))
+        if($request->hasFile('thumbnail_image'))
         {
-            $file = $request->file('logo');
+            $destination = 'uploads/products/' . $product->thumbnail_image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+
+            $file = $request->file('thumbnail_image');
             $extention = $file->getClientOriginalExtension();
             $fileName = time().'.'.$extention;
-            $file->move('uploads/brands/', $fileName);
+            $file->move('uploads/products/', $fileName);
+        }
+
+        if($request->featured == "1")
+        {
+            $fe = true;
+        }else
+        {
+            $fe = false;
+        }
+
+        if($request->refundable == "1")
+        {
+            $re = true;
+        }else
+        {
+            $re = false;
         }
 
         $product->update([
-            "name" => $request->name,
-            "logo" => $fileName,
-            "meta_title" => $request->meta_title,
-            "meta_description" => $request->meta_description,
+             "name" => $request->name,
+            "user_id" => Auth::user()->id,
+            "category_id" => $request->category_id,
+            "brand_id" => $request->brand_id,
+            "unit" => $request->unit,
+            "purchase_qty" => $request->purchase_qty,
+            "thumbnail_image" => $fileName,
+            "unit_price" => $request->unit_price,
+            "quantity" => $request->quantity,
+            "sku" => $request->sku,
+            "description" => $request->description,
+            "featured" => $fe,
+            "refundable" => $re,
         ]);
 
        return redirect()->route('products.index')->with('message','Product Updated Successfully');

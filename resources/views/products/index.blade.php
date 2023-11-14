@@ -43,7 +43,7 @@
                             <td>{{ $key + 1 + ($products->currentPage() - 1) * $products->perPage() }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->user->name ?? "unknown" }}</td>
-                            <td>{{ $product->info }}</td>
+                            <td><strong>Unit:</strong> {{ $product->unit }} <br> <strong>Purchase Qty:</strong> {{ $product->purchase_qty }} <br><strong>Unit Price:</strong> {{ $product->unit_price }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->featured }}</td>
 
