@@ -67,8 +67,7 @@
                             </a>
                             <div class="collapse" id="sales" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="register.html">Oders</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Category</a>
+                                    <a class="nav-link" href="{{ route('orders.index')}}">Oders</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
