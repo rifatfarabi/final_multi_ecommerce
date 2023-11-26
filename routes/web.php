@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerIndexController;
 use App\Http\Controllers\FrontendController;
@@ -30,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[CustomerIndexController::class, 'index'])->name('welcome');
 Route::get('/customer/dashboard',[FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
+Route::resource('/cart', CartController::class);
 
 Auth::routes();
 
