@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CustomerIndexController extends Controller
 {
     public function index(){
-        return view('frontend.welcome');
+        $products = Product::all();
+        return view('frontend.welcome', compact('products'));
     }
 }
