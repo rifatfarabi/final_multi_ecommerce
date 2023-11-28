@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\New_;
 
 class CartController extends Controller
 {
@@ -11,7 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart.index');
+
+        // return view('cart.index');
     }
 
     /**
@@ -27,7 +32,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //
     }
 
     /**
@@ -35,7 +40,19 @@ class CartController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = Auth::user();
+        $product = Product::find($id);
+
+        $cart = new Cart();
+        $cart->product_id = $product->id;
+        // $cart->user_id = $user->id;
+        $cart->quantity = $product->quantity;
+
+        $cart->save();
+
+        return redirect()->back();
+
+
     }
 
     /**
