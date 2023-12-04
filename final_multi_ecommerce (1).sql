@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 03:51 PM
+-- Generation Time: Dec 04, 2023 at 01:38 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -65,7 +65,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `quantity`, `product_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '1', '11', NULL, '2023-11-28 08:31:15', '2023-11-28 08:31:15');
+(1, '1', '11', NULL, '2023-11-28 08:31:15', '2023-11-28 08:31:15'),
+(2, '1', '11', NULL, '2023-11-29 03:10:19', '2023-11-29 03:10:19'),
+(11, '2', '12', NULL, '2023-12-04 10:50:27', '2023-12-04 10:50:27');
 
 -- --------------------------------------------------------
 
@@ -346,7 +348,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `categories`
