@@ -39,13 +39,14 @@
 							</tr>
 						</thead>
 						<tbody>
+                            @foreach ($carts as $cart)
 							<tr>
 								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
 								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href="#">Women Dress</a></p>
-									<p class="product-des">Maboriosam in a tonto nesciung eget  distingy magndapibus.</p>
+									<p class="product-name"><a href="#">{{ $cart->name }}</a></p>
+									{{-- <p class="product-des">Maboriosam in a tonto nesciung eget  distingy magndapibus.</p> --}}
 								</td>
-								<td class="price" data-title="Price"><span>$110.00 </span></td>
+								<td class="price" data-title="Price"><span>{{ $cart->unit_price }}</span></td>
 								<td class="qty" data-title="Qty"><!-- Input Order -->
 									<div class="input-group">
 										<div class="button minus">
@@ -65,7 +66,8 @@
 								<td class="total-amount" data-title="Total"><span>$220.88</span></td>
 								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
 							</tr>
-							<tr>
+                            @endforeach
+							{{-- <tr>
 								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
 								<td class="product-des" data-title="Description">
 									<p class="product-name"><a href="#">Women Dress</a></p>
@@ -90,8 +92,8 @@
 								</td>
 								<td class="total-amount" data-title="Total"><span>$220.88</span></td>
 								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-							</tr>
-							<tr>
+							</tr> --}}
+							{{-- <tr>
 								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
 								<td class="product-des" data-title="Description">
 									<p class="product-name"><a href="#">Women Dress</a></p>
@@ -116,7 +118,7 @@
 								</td>
 								<td class="total-amount" data-title="Total"><span>$220.88</span></td>
 								<td class="action" data-title="Remove"><a href="#"><i class="ti-trash remove-icon"></i></a></td>
-							</tr>
+							</tr> --}}
 						</tbody>
 					</table>
 					<!--/ End Shopping Summery -->

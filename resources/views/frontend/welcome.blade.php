@@ -162,9 +162,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="product-content">
-                                                    <h3><a href="product-details.html">{{ $product->name}}</a></h3>
+                                                    <h3><a href="product-details.html">{{ $product->name }}</a></h3>
                                                     <div class="product-price">
-                                                        <span>{{ $product->unit_price}}</span>
+                                                        <span>{{ $product->unit_price }}</span>
                                                     </div>
                                                 </div>
                                             </div>
