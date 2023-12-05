@@ -43,10 +43,10 @@
 							<tr>
 								<td class="image" data-title="No"><img src="https://via.placeholder.com/100x100" alt="#"></td>
 								<td class="product-des" data-title="Description">
-									<p class="product-name"><a href="#">{{ $cart->name }}</a></p>
+									<p class="product-name"><a href="#">Shirt</a></p>
 									{{-- <p class="product-des">Maboriosam in a tonto nesciung eget  distingy magndapibus.</p> --}}
 								</td>
-								<td class="price" data-title="Price"><span>{{ $cart->unit_price }}</span></td>
+								<td class="price" data-title="Price"><span>$200</span></td>
 								<td class="qty" data-title="Qty"><!-- Input Order -->
 									<div class="input-group">
 										<div class="button minus">

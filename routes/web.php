@@ -30,9 +30,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',[CustomerIndexController::class, 'index'])->name('welcome');
+// Route::get('cart/items', [CustomerIndexController::class, 'cartItems'])->name('items.cart');
 Route::get('/customer/dashboard',[FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
 Route::resource('/cart', CartController::class);
-Route::get('show/cart',[CartController::class, 'showCart'])->name('cart.show');
+
 
 Auth::routes();
 

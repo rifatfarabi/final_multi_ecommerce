@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2023 at 01:38 PM
+-- Generation Time: Dec 05, 2023 at 02:44 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -56,6 +56,7 @@ CREATE TABLE `carts` (
   `quantity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `temp_user_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -64,10 +65,10 @@ CREATE TABLE `carts` (
 -- Dumping data for table `carts`
 --
 
-INSERT INTO `carts` (`id`, `quantity`, `product_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, '1', '11', NULL, '2023-11-28 08:31:15', '2023-11-28 08:31:15'),
-(2, '1', '11', NULL, '2023-11-29 03:10:19', '2023-11-29 03:10:19'),
-(11, '2', '12', NULL, '2023-12-04 10:50:27', '2023-12-04 10:50:27');
+INSERT INTO `carts` (`id`, `quantity`, `product_id`, `user_id`, `temp_user_id`, `created_at`, `updated_at`) VALUES
+(19, '12', '15', NULL, 'HuFWR', '2023-12-05 04:09:47', '2023-12-05 04:09:47'),
+(20, '123', '13', NULL, 'HuFWR', '2023-12-05 04:11:09', '2023-12-05 04:11:09'),
+(30, '12', '12', NULL, 'HuFWR', '2023-12-05 07:33:19', '2023-12-05 07:33:19');
 
 -- --------------------------------------------------------
 
@@ -348,7 +349,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `categories`

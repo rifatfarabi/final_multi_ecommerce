@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('product_id')->nullable();
             $table->string('user_id')->nullable();
             $table->string('quantity')->nullable();
+            $table->string('temp_user_id')->nullable();
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\New_;
+use Str;
 
 class CartController extends Controller
 {
@@ -29,15 +30,32 @@ class CartController extends Controller
     }
 
 
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        $user = Auth::user();
+
+      $session_data = session()->get('name');
+
+      $user = Auth::user();
         $product = Product::find($id);
+
+
 
         $cart = new Cart();
         $cart->product_id = $product->id;
         // $cart->user_id = $user->id;
         $cart->quantity = $product->quantity;
+
+        if($session_data)
+        {
+            $cart->temp_user_id = $session_data;
+        }
+        else
+        {
+            $random = Str::random(5);
+            $request->session()->put('name', $random);
+            $cart->temp_user_id = $random;
+
+        }
 
         $cart->save();
 
@@ -60,14 +78,6 @@ class CartController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function showCart()
-    {
-        $product = Product::all();
-        $carts = Cart::where('product_id', $product);
-        // $product = Product::all();
-        return view('cart.index', compact('carts', 'product'));
     }
 
 
