@@ -257,7 +257,7 @@
                                                     <a href="#" class="remove" title="Remove this item"><i
                                                             class="fa fa-remove"></i></a>
                                                     <a class="cart-img" href="#"><img
-                                                            src="https://via.placeholder.com/70x70"
+                                                            src="{{ asset('/uploads/products/' . $product->thumbnail_image) }}"
                                                             alt="#"></a>
                                                     <h4><a href="#">{{ $product->name }}</a></h4>
                                                     <p class="quantity">1x - <span
