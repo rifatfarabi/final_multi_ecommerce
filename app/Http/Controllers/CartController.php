@@ -14,14 +14,10 @@ class CartController extends Controller
 
     public function index()
     {
-       //
+        $products = Product::all();
+       return view('cart.index',compact('products'));
     }
 
-
-    public function create()
-    {
-        //
-    }
 
 
     public function store(Request $request)
@@ -64,20 +60,14 @@ class CartController extends Controller
 
     }
 
-    public function edit(string $id)
-    {
-        //
-    }
+    public function addQuantity($id){
 
+        $cart = Cart::find($id);
+        $cart->update([
+            "quantity" => $cart->quantity + 1,
+        ]);
 
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->back();
     }
 
 

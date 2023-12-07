@@ -15,10 +15,11 @@ class CustomerIndexController extends Controller
         return view('frontend.welcome', compact('products','obts'));
     }
 
-    // public function cartItems()
-    // {
-    //     $carts = Cart::where('temp_user_id', 'HuFWR')->get();
-    //     return view('layouts.app', compact('carts'));
-    // }
+    public function cartRemove($id){
+        $cart = Cart::find($id);
+        $cart->delete();
+        return redirect()->route('welcome')->with('seccess','Cart Item Successfully Remove');
+    }
+
 }
 

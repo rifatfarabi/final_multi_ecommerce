@@ -237,16 +237,16 @@
                                 </div>
                                 <div class="sinlge-bar shopping">
                                     @php
-                                    $carts = \App\Models\Cart::where('temp_user_id', 'HuFWR')->get();
-                                @endphp
+                                        $carts = \App\Models\Cart::where('temp_user_id', 'HuFWR')->get();
+                                    @endphp
                                     <a href="#" class="single-icon"><i class="ti-bag"></i> <span
                                             class="total-count">{{ count($carts) }}</span></a>
 
                                     <!-- Shopping Item -->
                                     <div class="shopping-item">
                                         <div class="dropdown-cart-header">
-                                            <span>{{ count($carts)}} items</span>
-                                            <a href="#">View Cart</a>
+                                            <span>{{ count($carts) }} items</span>
+                                            <a href="{{ route('cart.index') }}">View Cart</a>
                                         </div>
                                         <ul class="shopping-list">
                                             @foreach ($carts as $cart)
@@ -254,13 +254,13 @@
                                                     $product = \App\Models\Product::find($cart->product_id);
                                                 @endphp
                                                 <li>
-                                                    <a href="#" class="remove" title="Remove this item"><i
+                                                    <a href="{{ route('cart.remove', $cart->id )}}" class="remove" title="Remove this item"><i
                                                             class="fa fa-remove"></i></a>
                                                     <a class="cart-img" href="#"><img
                                                             src="{{ asset('/uploads/products/' . $product->thumbnail_image) }}"
                                                             alt="#"></a>
                                                     <h4><a href="#">{{ $product->name }}</a></h4>
-                                                    <p class="quantity">1x - <span
+                                                    <p class="quantity">{{ $cart->quantity }}x - <span
                                                             class="amount">{{ $product->unit_price }}</span></p>
                                                 </li>
                                             @endforeach

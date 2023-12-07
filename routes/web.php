@@ -30,6 +30,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',[CustomerIndexController::class, 'index'])->name('welcome');
+Route::get('/cart/remove/{id}',[CustomerIndexController::class, 'cartRemove'])->name('cart.remove');
+Route::get('/quantity/{id}',[CartController::class, 'addQuantity'])->name('quantity.add');
 // Route::get('cart/items', [CustomerIndexController::class, 'cartItems'])->name('items.cart');
 Route::get('/customer/dashboard',[FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
 Route::resource('/cart', CartController::class);
@@ -38,7 +40,6 @@ Route::resource('/cart', CartController::class);
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 
 Route::get('/admin/login',[AdminLoginController::class,'adminLogin'])->name('admin.login');
 Route::get('/admin/dashboard',[AdminDashboardController::class,'adminDashboard'])->name('admin.dashboard');
