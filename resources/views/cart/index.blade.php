@@ -38,10 +38,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($carts as $cart)
+                            @php
+                                $product = App\Models\Product::find($cart->product_id);
+                            @endphp
                                 <tr>
                                     <td class="image" data-title="No"><img
-                                            src="{{ asset('/uploads/products/' . $product->thumbnail_image) }}"
+                                            src="{{ asset('/uploads/products/' . $cart->thumbnail_image) }}"
                                             alt="#"></td>
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name"><a href="#">{{ $product->name }}</a></p>
@@ -71,8 +74,8 @@
                                         </div>
                                         <!--/ End Input Order -->
                                     </td>
-                                    <td class="total-amount" data-title="Total"><span>gg</span></td>
-                                    <td class="action" data-title="Remove"><a href="#"><i
+                                    <td class="total-amount" data-title="Total"><span>{{ $product->unit_price + 2 }}</span></td>
+                                    <td class="action" data-title="Remove"><a href="{{ route('cart.remove', $cart->id )}}"><i
                                                 class="ti-trash remove-icon"></i></a></td>
                                 </tr>
                             @endforeach

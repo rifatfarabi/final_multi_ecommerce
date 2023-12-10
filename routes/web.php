@@ -35,6 +35,7 @@ Route::get('/quantity/{id}',[CartController::class, 'addQuantity'])->name('quant
 // Route::get('cart/items', [CustomerIndexController::class, 'cartItems'])->name('items.cart');
 Route::get('/customer/dashboard',[FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
 Route::resource('/cart', CartController::class);
+Route::get('/customer/logout', [CustomerIndexController::class, 'customerLogout'])->name('customer.logout');
 
 
 Auth::routes();

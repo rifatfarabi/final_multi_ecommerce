@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2023 at 04:34 PM
+-- Generation Time: Dec 10, 2023 at 01:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,9 +66,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `quantity`, `product_id`, `user_id`, `temp_user_id`, `created_at`, `updated_at`) VALUES
-(31, '4', '15', NULL, 'aPYhX', '2023-12-06 03:49:42', '2023-12-06 03:49:42'),
-(32, '1', '11', NULL, 'A5wyb', '2023-12-06 08:12:39', '2023-12-06 08:12:39'),
-(33, '1', '13', NULL, 'ruU86', '2023-12-07 01:20:15', '2023-12-07 01:20:15');
+(49, '123', '10', NULL, 'HuFWR', '2023-12-10 02:21:00', '2023-12-10 02:21:00'),
+(50, '123', '13', NULL, 'LWw5n', '2023-12-10 06:15:04', '2023-12-10 06:15:04'),
+(51, '12', '15', NULL, 'LWw5n', '2023-12-10 06:16:21', '2023-12-10 06:16:21');
 
 -- --------------------------------------------------------
 
@@ -256,7 +256,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$VWCgsRYaRgmi4vzHkNUj9.CLJn9/xXQfwQFTo2Zuvoo7pIgyULzh6', 'admin', NULL, NULL, NULL),
-(2, 'Customer', 'customer@gmail.com', NULL, '$2y$10$svXOKsb2Wzy4Gn8JZhKrDeXzPC5nqVDG2sebbduh/qboBFIq7n0mK', 'customer', 'Hxhu7lMAIz6xcH8OnuFlamjJVDTvtTVvE3Ws1r1lFxRidBWu7n6SDrJQutZP', NULL, NULL),
+(2, 'Customer', 'customer@gmail.com', NULL, '$2y$10$svXOKsb2Wzy4Gn8JZhKrDeXzPC5nqVDG2sebbduh/qboBFIq7n0mK', 'customer', 'vPIiMOXvJpAhR0rc24SuQa6StCfRGNxOF5JbwiFIReNVezyunBeqnshA2d0l', NULL, NULL),
 (7, 'uk', 'uk@gmail.com', NULL, '$2y$10$V34TMV1.Sx3XLlWeR/hwHeQoNrJMdVLTPRBSbUt9NFs1D31mExGxS', 'customer', NULL, '2023-10-19 01:36:14', '2023-10-19 01:36:14');
 
 --
@@ -349,7 +349,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `categories`

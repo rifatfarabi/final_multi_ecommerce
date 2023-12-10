@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerIndexController extends Controller
 {
@@ -18,7 +19,13 @@ class CustomerIndexController extends Controller
     public function cartRemove($id){
         $cart = Cart::find($id);
         $cart->delete();
-        return redirect()->route('welcome')->with('seccess','Cart Item Successfully Remove');
+        return redirect()->back();
+        // return redirect()->route('welcome')->with('seccess','Cart Item Successfully Remove');
+    }
+
+    public function customerLogout(){
+        Auth::logout();
+        return redirect('login');
     }
 
 }

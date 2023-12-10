@@ -14,8 +14,8 @@ class CartController extends Controller
 
     public function index()
     {
-        $products = Product::all();
-       return view('cart.index',compact('products'));
+        $carts = Cart::all();
+       return view('cart.index',compact('carts'));
     }
 
 
@@ -58,6 +58,11 @@ class CartController extends Controller
         return redirect()->back();
 
 
+    }
+
+    public function destroy(string $id)
+    {
+       //
     }
 
     public function addQuantity($id){
