@@ -44,7 +44,7 @@
                             @endphp
                                 <tr>
                                     <td class="image" data-title="No"><img
-                                            src="{{ asset('/uploads/products/' . $cart->thumbnail_image) }}"
+                                            src="{{ asset('/uploads/products/' . $product->thumbnail_image) }}"
                                             alt="#"></td>
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name"><a href="#">{{ $product->name }}</a></p>
