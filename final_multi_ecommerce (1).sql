@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2023 at 01:23 PM
+-- Generation Time: Dec 12, 2023 at 01:56 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,9 +66,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `quantity`, `product_id`, `user_id`, `temp_user_id`, `created_at`, `updated_at`) VALUES
-(49, '123', '10', NULL, 'HuFWR', '2023-12-10 02:21:00', '2023-12-10 02:21:00'),
-(50, '123', '13', NULL, 'LWw5n', '2023-12-10 06:15:04', '2023-12-10 06:15:04'),
-(51, '12', '15', NULL, 'LWw5n', '2023-12-10 06:16:21', '2023-12-10 06:16:21');
+(49, '2', '10', NULL, 'HuFWR', '2023-12-10 02:21:00', '2023-12-10 02:21:00'),
+(50, '3', '13', NULL, 'HuFWR', '2023-12-10 06:15:04', '2023-12-10 06:15:04'),
+(52, '2', '15', NULL, 'HuFWR', '2023-12-11 01:47:02', '2023-12-11 01:47:02');
 
 -- --------------------------------------------------------
 
@@ -349,7 +349,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `categories`
