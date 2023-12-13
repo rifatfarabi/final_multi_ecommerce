@@ -41,17 +41,18 @@
                             @php
                                 $subtotal = 0;
                             @endphp
+
                             @foreach ($carts as $cart)
+
                             @php
                                 $product = App\Models\Product::find($cart->product_id);
                             @endphp
                                 <tr>
                                     <td class="image" data-title="No"><img
-                                            src="{{ asset('/uploads/products/' . $product->thumbnail_image) }}"
+                                            src="{{ asset('/uploads/products/'. $product->thumbnail_image) }}"
                                             alt="#"></td>
                                     <td class="product-des" data-title="Description">
                                         <p class="product-name"><a href="#">{{ $product->name }}</a></p>
-                                        {{-- <p class="product-des">Maboriosam in a tonto nesciung eget  distingy magndapibus.</p> --}}
                                     </td>
                                     <td class="price" data-title="Price"><span>{{ $product->unit_price }}</span></td>
                                     <td class="qty" data-title="Qty"><!-- Input Order -->
