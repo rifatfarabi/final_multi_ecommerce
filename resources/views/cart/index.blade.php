@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="checkbox">
                                         <label class="checkbox-inline" for="2"><input name="news" id="2"
-                                                type="checkbox"> Shipping (+10$)</label>
+                                                type="checkbox"> Shipping (+10৳)</label>
                                     </div>
                                 </div>
                             </div>
@@ -113,10 +113,10 @@
                             <div class="col-lg-4 col-md-7 col-12">
                                 <div class="right">
                                     <ul>
-                                        <li>Cart Subtotal<span>{{ $subtotal }}</span></li>
+                                        <li>Cart Subtotal<span>৳ {{ $subtotal }}</span></li>
                                         <li>Shipping<span>Free</span></li>
-                                        <li>You Save<span>$0.00</span></li>
-                                        <li class="last">You Pay<span>{{ $subtotal }}</span></li>
+                                        <li>You Save<span>৳ 0.00</span></li>
+                                        <li class="last">You Pay<span>৳ {{ $subtotal }}</span></li>
                                     </ul>
                                     <div class="button5">
                                         <a href="#" class="btn">Checkout</a>

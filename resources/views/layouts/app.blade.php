@@ -248,6 +248,11 @@
                                             <span>{{ count($carts) }} items</span>
                                             <a href="{{ route('cart.index') }}">View Cart</a>
                                         </div>
+
+                                        @php
+                                          $total = 0;
+                                        @endphp
+
                                         <ul class="shopping-list">
                                             @foreach ($carts as $cart)
                                                 @php
@@ -263,13 +268,16 @@
                                                     <p class="quantity">{{ $cart->quantity }}x - <span
                                                             class="amount">{{ $product->unit_price }}</span></p>
                                                 </li>
+                                                @php
+                                                    $total += $cart->quantity * $product->unit_price;
+                                                @endphp
                                             @endforeach
                                         </ul>
 
                                         <div class="bottom">
                                             <div class="total">
                                                 <span>Total</span>
-                                                <span class="total-amount">$134.00</span>
+                                                <span class="total-amount">৳{{ $total }}</span>
                                             </div>
                                             <a href="checkout.html" class="btn animate">Checkout</a>
                                         </div>
