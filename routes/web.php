@@ -32,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[CustomerIndexController::class, 'index'])->name('welcome');
 Route::get('/cart/remove/{id}',[CustomerIndexController::class, 'cartRemove'])->name('cart.remove');
 Route::get('/quantity/{id}',[CartController::class, 'addQuantity'])->name('quantity.add');
+Route::get('/cart/quantity/minus/{id}',[CartController::class, 'minusQuantity'])->name('quantity.minus');
+Route::get('/cart/quantity/plus/{id}',[CartController::class, 'plusQuantity'])->name('quantity.plus');
 Route::get('/checkout',[CartController::class, 'itemsCheckout'])->name('checkout');
 // Route::get('cart/items', [CustomerIndexController::class, 'cartItems'])->name('items.cart');
 Route::get('/customer/dashboard',[FrontendController::class, 'customerDashboard'])->name('customer.dashboard');

@@ -58,18 +58,17 @@
                                     <td class="qty" data-title="Qty"><!-- Input Order -->
                                         <div class="input-group">
                                             <div class="button minus">
-                                                <button type="button" class="btn btn-primary btn-number"
-                                                    disabled="disabled" data-type="minus" data-field="quant[1]">
+                                                <a href="{{ route('quantity.minus', $cart->id )}}" class="btn btn-primary"
+                                                    >
                                                     <i class="ti-minus"></i>
-                                                </button>
+                                                </a>
                                             </div>
 
                                             <input type="text" name="quant[1]" class="input-number" data-min="1"
                                                 data-max="100" value="{{ $cart->quantity }}">
                                             <div class="button plus">
-                                                <a href=""
-                                                    class="btn btn-primary btn-number" data-type="plus"
-                                                    data-field="quant[1]">
+                                                <a href="{{ route('quantity.plus', $cart->id )}}"
+                                                    class="btn btn-primary " >
                                                     <i class="ti-plus"></i>
                                                 </a>
                                             </div>
@@ -119,8 +118,8 @@
                                         <li class="last">You Pay<span>৳ {{ $subtotal }}</span></li>
                                     </ul>
                                     <div class="button5">
-                                        <a href="#" class="btn">Checkout</a>
-                                        <a href="#" class="btn">Continue shopping</a>
+                                        <a href="{{ route('checkout') }}" class="btn">Checkout</a>
+                                        <a href="{{ route('welcome') }}" class="btn">Continue shopping</a>
                                     </div>
                                 </div>
                             </div>
@@ -322,3 +321,30 @@
     </div>
     <!-- Modal end -->
 @endsection
+
+
+{{-- @section('scripts')
+
+<script>
+
+$(document).ready(function() {
+    $(".increment-btn").click(function(e){
+        e.preventDefault();
+
+
+        var inc_value = $('.input-number').val();
+        var value = parseInt(inc_value,10);
+        value = isNaN(value) ? 0 : value;
+
+
+        if(value < 10)
+        {
+            value++;
+            $('.input-number').val(value);
+        }
+    });
+});
+
+</script>
+
+@endsection --}}

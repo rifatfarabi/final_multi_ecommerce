@@ -279,7 +279,7 @@
                                                 <span>Total</span>
                                                 <span class="total-amount">৳{{ $total }}</span>
                                             </div>
-                                            <a href="checkout.html" class="btn animate">Checkout</a>
+                                            <a href="{{ route('checkout') }}" class="btn animate">Checkout</a>
                                         </div>
                                     </div>
 

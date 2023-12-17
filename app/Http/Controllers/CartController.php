@@ -74,12 +74,40 @@ class CartController extends Controller
         return redirect()->back();
     }
 
+    public function minusQuantity(Request $request, string $id){
+
+        $cart = Cart::find($id);
+
+        if($cart->quantity > 1)
+        {
+
+            $cart->update([
+                "quantity" => $cart->quantity - 1,
+            ]);
+
+        }
+
+        return redirect()->back();
+
+    }
+
+    public function plusQuantity(Request $request, string $id){
+
+        $cart = Cart::find($id);
+        if($cart->quantity < 100)
+        {
+            $cart->update([
+                "quantity" => $cart->quantity + 1,
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
 
     public function itemsCheckout(){
-
+        return view('checkout.index');
     }
-    public function newItems(){
 
-    }
 
 }
