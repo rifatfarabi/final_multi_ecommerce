@@ -76,7 +76,10 @@ class CartController extends Controller
 
 
     public function itemsCheckout(){
-        
+
+    }
+    public function newItems(){
+
     }
 
 }
