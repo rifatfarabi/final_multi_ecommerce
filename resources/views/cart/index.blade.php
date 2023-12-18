@@ -113,9 +113,9 @@
                                 <div class="right">
                                     <ul>
                                         <li>Cart Subtotal<span>৳ {{ $subtotal }}</span></li>
-                                        <li>Shipping<span>Free</span></li>
+                                        <li>Shipping<span>৳ 10</span></li>
                                         <li>You Save<span>৳ 0.00</span></li>
-                                        <li class="last">You Pay<span>৳ {{ $subtotal }}</span></li>
+                                        <li class="last">You Pay<span>৳ {{ $subtotal + 10 }}</span></li>
                                     </ul>
                                     <div class="button5">
                                         <a href="{{ route('checkout') }}" class="btn">Checkout</a>

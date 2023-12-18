@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2023 at 01:56 PM
+-- Generation Time: Dec 18, 2023 at 05:04 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,9 +66,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `quantity`, `product_id`, `user_id`, `temp_user_id`, `created_at`, `updated_at`) VALUES
-(49, '2', '10', NULL, 'HuFWR', '2023-12-10 02:21:00', '2023-12-10 02:21:00'),
-(50, '3', '13', NULL, 'HuFWR', '2023-12-10 06:15:04', '2023-12-10 06:15:04'),
-(52, '2', '15', NULL, 'HuFWR', '2023-12-11 01:47:02', '2023-12-11 01:47:02');
+(49, '1', '10', NULL, 'HuFWR', '2023-12-10 02:21:00', '2023-12-18 00:17:35'),
+(50, '1', '13', NULL, 'HuFWR', '2023-12-10 06:15:04', '2023-12-17 07:53:32'),
+(52, '2', '15', NULL, 'HuFWR', '2023-12-11 01:47:02', '2023-12-17 08:00:14');
 
 -- --------------------------------------------------------
 
@@ -137,8 +137,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2023_11_07_054620_create_categories_table', 2),
 (36, '2023_11_07_054621_create_brands_table', 2),
 (38, '2023_11_07_054622_create_products_table', 3),
-(39, '2023_11_16_064733_create_orders_table', 4),
-(40, '2023_11_26_062710_create_carts_table', 4);
+(40, '2023_11_26_062710_create_carts_table', 4),
+(41, '2023_12_18_142410_create_orders_table', 5);
 
 -- --------------------------------------------------------
 
@@ -148,6 +148,16 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state_division` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address_line1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -367,7 +377,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `orders`

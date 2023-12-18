@@ -106,7 +106,8 @@ class CartController extends Controller
 
 
     public function itemsCheckout(){
-        return view('checkout.index');
+        $carts = Cart::all();
+        return view('checkout.index',compact('carts'));
     }
 
 

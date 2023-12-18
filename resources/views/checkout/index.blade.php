@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('component.main_menu')
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -19,44 +20,60 @@
     <!-- End Breadcrumbs -->
 
     <!-- Start Checkout -->
+
     <section class="shop checkout section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-12">
-                    <div class="checkout-form">
-                        <h2>Make Your Checkout Here</h2>
-                        <p>Please register in order to checkout more quickly</p>
-                        <!-- Form -->
-                        <form class="form" method="post" action="#">
+        <form class="form" method="post" action="{{ route('order.store') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-12">
+                        <div class="checkout-form">
+                            <h2>Make Your Checkout Here</h2>
+                            <p>Please register in order to checkout more quickly</p>
+                            <!-- Form -->
+
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>First Name<span>*</span></label>
-                                        <input type="text" name="name" placeholder="" required="required">
+                                        <input type="text" name="first_name" id="first_name">
+                                        @error('first_name')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Last Name<span>*</span></label>
-                                        <input type="text" name="name" placeholder="" required="required">
+                                        <input type="text" name="last_name" id="last_name">
+                                            @error('last_name')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Email Address<span>*</span></label>
-                                        <input type="email" name="email" placeholder="" required="required">
+                                        <input type="email" name="email" id="email">
+                                        @error('email')
+                                        <div class="error">{{ $message }}</div>
+                                       @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Phone Number<span>*</span></label>
-                                        <input type="number" name="number" placeholder="" required="required">
+                                        <input type="number" name="number" id="number">
+                                            @error('number')
+                                            <div class="error">{{ $message }}</div>
+                                           @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Country<span>*</span></label>
-                                        <select name="country_name" id="country">
+                                        <select name="country" id="country">
                                             <option value="AF">Afghanistan</option>
                                             <option value="AX">Åland Islands</option>
                                             <option value="AL">Albania</option>
@@ -307,8 +324,8 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
-                                        <label>State / Divition<span>*</span></label>
-                                        <select name="state-province" id="state-province">
+                                        <label>State / Division<span>*</span></label>
+                                        <select name="state_division" id="state_division">
                                             <option value="divition" selected="selected">New Yourk</option>
                                             <option>Los Angeles</option>
                                             <option>Chicago</option>
@@ -322,25 +339,35 @@
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Address Line 1<span>*</span></label>
-                                        <input type="text" name="address" placeholder="" required="required">
+                                        <input type="text" name="address_line1" id="address_line1">
+                                            @error('address_line1')
+                                            <div class="error">{{ $message }}</div>
+                                           @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Address Line 2<span>*</span></label>
-                                        <input type="text" name="address" placeholder="" required="required">
+                                        <input type="text" name="address_line2" id="address_line2">
+                                            @error('address_line2')
+                                            <div class="error">{{ $message }}</div>
+                                           @enderror
+
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Postal Code<span>*</span></label>
-                                        <input type="text" name="post" placeholder="" required="required">
+                                        <input type="text" name="postal_code" id="postal_code">
+                                            @error('address_line2')
+                                            <div class="error">{{ $message }}</div>
+                                           @enderror
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <div class="form-group">
                                         <label>Company<span>*</span></label>
-                                        <select name="company_name" id="company">
+                                        <select name="company" id="company">
                                             <option value="company" selected="selected">Microsoft</option>
                                             <option>Apple</option>
                                             <option>Xaiomi</option>
@@ -358,59 +385,144 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <!--/ End Form -->
+
+                            <!--/ End Form -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12">
+                        <div class="order-details">
+                            <!-- Order Widget -->
+                            <div class="single-widget">
+                                <h2>CART TOTALS</h2>
+                                @php
+                                    $subtotal = 0;
+                                @endphp
+                                <div class="content">
+
+                                    @foreach ($carts as $cart)
+                                        @php
+                                            $product = App\Models\Product::find($cart->product_id);
+                                        @endphp
+
+                                        @php
+                                            $subtotal += $product->unit_price * $cart->quantity;
+                                        @endphp
+                                    @endforeach
+                                    <ul>
+                                        <li>Sub Total<span>৳ {{ $subtotal }}</span></li>
+                                        <li>(+) Shipping<span>৳ 10</span></li>
+                                        <li class="last">Total<span>৳ {{ $subtotal + 10 }}</span></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--/ End Order Widget -->
+                            <!-- Order Widget -->
+                            <div class="single-widget">
+                                <h2>Payments</h2>
+                                <div class="content">
+                                    <div class="checkbox">
+                                        <label class="checkbox-inline" for="1"><input name="updates"
+                                                id="1" type="checkbox"> Check Payments</label>
+                                        <label class="checkbox-inline" for="2"><input name="news"
+                                                id="2" type="checkbox"> Cash On Delivery</label>
+                                        <label class="checkbox-inline" for="3"><input name="news"
+                                                id="3" type="checkbox"> PayPal</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End Order Widget -->
+                            <!-- Payment Method Widget -->
+                            <div class="single-widget payement">
+                                <div class="content">
+                                    <img src="images/payment-method.png" alt="#">
+                                </div>
+                            </div>
+                            <!--/ End Payment Method Widget -->
+                            <!-- Button Widget -->
+                            <div class="single-widget get-button">
+                                <div class="content">
+                                    <div class="button">
+                                        <button type="submit" class="btn btn-primary">proceed to checkout</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End Button Widget -->
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-12">
-                    <div class="order-details">
-                        <!-- Order Widget -->
-                        <div class="single-widget">
-                            <h2>CART TOTALS</h2>
-                            <div class="content">
-                                <ul>
-                                    <li>Sub Total<span>$330.00</span></li>
-                                    <li>(+) Shipping<span>$10.00</span></li>
-                                    <li class="last">Total<span>$340.00</span></li>
-                                </ul>
-                            </div>
+
+            </div>
+        </form>
+    </section>
+
+    <!--/ End Checkout -->
+
+    <!-- Start Shop Services Area  -->
+    <section class="shop-services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-rocket"></i>
+                        <h4>Free shiping</h4>
+                        <p>Orders over $100</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-reload"></i>
+                        <h4>Free Return</h4>
+                        <p>Within 30 days returns</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-lock"></i>
+                        <h4>Sucure Payment</h4>
+                        <p>100% secure payment</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-tag"></i>
+                        <h4>Best Peice</h4>
+                        <p>Guaranteed price</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Newsletter -->
+
+    <!-- Start Shop Newsletter  -->
+    <section class="shop-newsletter section">
+        <div class="container">
+            <div class="inner-top">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 col-12">
+                        <!-- Start Newsletter Inner -->
+                        <div class="inner">
+                            <h4>Newsletter</h4>
+                            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
+                            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                                <input name="EMAIL" placeholder="Your email address" required="" type="email">
+                                <button class="btn">Subscribe</button>
+                            </form>
                         </div>
-                        <!--/ End Order Widget -->
-                        <!-- Order Widget -->
-                        <div class="single-widget">
-                            <h2>Payments</h2>
-                            <div class="content">
-                                <div class="checkbox">
-                                    <label class="checkbox-inline" for="1"><input name="updates" id="1"
-                                            type="checkbox"> Check Payments</label>
-                                    <label class="checkbox-inline" for="2"><input name="news" id="2"
-                                            type="checkbox"> Cash On Delivery</label>
-                                    <label class="checkbox-inline" for="3"><input name="news" id="3"
-                                            type="checkbox"> PayPal</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End Order Widget -->
-                        <!-- Payment Method Widget -->
-                        <div class="single-widget payement">
-                            <div class="content">
-                                <img src="images/payment-method.png" alt="#">
-                            </div>
-                        </div>
-                        <!--/ End Payment Method Widget -->
-                        <!-- Button Widget -->
-                        <div class="single-widget get-button">
-                            <div class="content">
-                                <div class="button">
-                                    <a href="#" class="btn">proceed to checkout</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End Button Widget -->
+                        <!-- End Newsletter Inner -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!--/ End Checkout -->
+    <!-- End Shop Newsletter -->
 @endsection

@@ -35,6 +35,7 @@ Route::get('/quantity/{id}',[CartController::class, 'addQuantity'])->name('quant
 Route::get('/cart/quantity/minus/{id}',[CartController::class, 'minusQuantity'])->name('quantity.minus');
 Route::get('/cart/quantity/plus/{id}',[CartController::class, 'plusQuantity'])->name('quantity.plus');
 Route::get('/checkout',[CartController::class, 'itemsCheckout'])->name('checkout');
+Route::resource('/order', OrderController::class);
 // Route::get('cart/items', [CustomerIndexController::class, 'cartItems'])->name('items.cart');
 Route::get('/customer/dashboard',[FrontendController::class, 'customerDashboard'])->name('customer.dashboard');
 Route::resource('/cart', CartController::class);
