@@ -6,11 +6,14 @@ use App\Http\Requests\Order\StoreOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
+use function PHPUnit\TextUI\XmlConfiguration\php;
+
 class OrderController extends Controller
 {
     public function index()
     {
-        return view('order.index');
+
+
     }
 
 
@@ -22,27 +25,31 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        dd($request->all());
+
+          $order_code = time();
+
         $checkout = Order::create([
             "first_name" => $request->first_name,
             "last_name" => $request->last_name,
             "email" => $request->email,
-            "phone" => $request->phone,
+            "phone" => $request->phone ?? '',
             "country" => $request->country,
             "state_division" => $request->state_division,
             "address_line1" => $request->address_line1,
             "address_line2" => $request->address_line2,
             "postal_code" => $request->postal_code,
             "company" => $request->company,
+            "order_id" => $order_code,
         ]);
 
-        return redirect()->route('order.index');
+        return redirect()->route('order.show', $checkout->id);
     }
 
 
     public function show(string $id)
     {
-        //
+        $checkout = Order::find($id);
+        return view('order.index',compact('checkout'));
     }
 
 

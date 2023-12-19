@@ -20,5 +20,6 @@ class Order extends Model
         "address_line2",
         "postal_code",
         "company",
+        "order_id",
     ];
 }

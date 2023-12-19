@@ -22,16 +22,16 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // "first_name" => ["required"],
-            // "last_name" => ["required"],
-            // "email" => ["required", "email"],
-            // "phone" => ["required"],
-            // "country" => ["required"],
-            // "state_division" => ["required"],
-            // "address_line1" => ["required"],
-            // "address_line2" => ["string"],
-            // "postal_code" => ["integer"],
-            // "company" => ["required"],
+            "first_name" => ["required"],
+            "last_name" => ["required"],
+            "email" => ["required"],
+            "phone" => ["integer"],
+            "country" => ["required"],
+            "state_division" => ["required"],
+            "address_line1" => ["required"],
+            "address_line2" => ["required"],
+            "postal_code" => ["integer"],
+            "company" => ["required"],
         ];
     }
 }
