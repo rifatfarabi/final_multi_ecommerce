@@ -61,7 +61,7 @@ class CartController extends Controller
 
     public function destroy(string $id)
     {
-       //
+        //
     }
 
     public function addQuantity($id){
@@ -109,6 +109,5 @@ class CartController extends Controller
         $carts = Cart::all();
         return view('checkout.index',compact('carts'));
     }
-
 
 }

@@ -12,8 +12,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-
-
+        //
     }
 
 
@@ -42,6 +41,7 @@ class OrderController extends Controller
             "order_id" => $order_code,
         ]);
 
+        $checkout->delete();
         return redirect()->route('order.show', $checkout->id);
     }
 
@@ -49,7 +49,7 @@ class OrderController extends Controller
     public function show(string $id)
     {
         $checkout = Order::find($id);
-        return view('order.index',compact('checkout'));
+        return view('order.show',compact('checkout'));
     }
 
 

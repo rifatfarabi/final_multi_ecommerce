@@ -17,7 +17,7 @@
                             <h6>Time Placed: {{ $checkout->created_at }} </h6>
 
                             <div class="button5 mt-5 text-center">
-                                <a href="{{ route('welcome') }}" class="btn">Continue shopping</a>
+                                <a href="{{ route('welcome') }}" class="btn btn-primary">Continue shopping</a>
                             </div>
 
                         </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2023 at 05:04 PM
+-- Generation Time: Dec 20, 2023 at 02:04 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -158,9 +158,29 @@ CREATE TABLE `orders` (
   `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_id` int(20) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `first_name`, `last_name`, `email`, `phone`, `country`, `state_division`, `address_line1`, `address_line2`, `postal_code`, `company`, `order_id`, `created_at`, `updated_at`) VALUES
+(1, 'ab farabi', 'fsdf', 'user@gmail.com', '', 'US', 'divition', 'ddd', 'rr', '2232', 'company', 0, '2023-12-19 01:06:38', '2023-12-19 01:06:38'),
+(2, 'ab farabi', 'fsdf', 'user@gmail.com', '', 'US', 'divition', 'ddd', 'rr', '2232', 'company', 0, '2023-12-19 01:07:13', '2023-12-19 01:07:13'),
+(3, 'gaura', 'Selim', 'sm@gmail.com', '', 'US', 'divition', 'konabari', 'gazipur', '1234', 'company', 0, '2023-12-19 01:08:26', '2023-12-19 01:08:26'),
+(4, 'bb', 'nn', 'bb@gmail.com', '', 'US', 'divition', 'ww', 'tt', '3245', 'company', 1702971125, '2023-12-19 01:32:05', '2023-12-19 01:32:05'),
+(5, 'ab farabi', 'bb', 'use11r@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1223', 'company', 1702971255, '2023-12-19 01:34:15', '2023-12-19 01:34:15'),
+(6, 'ab farabi', 'bb', 'use11r@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1223', 'company', 1702996265, '2023-12-19 08:31:05', '2023-12-19 08:31:05'),
+(7, 'ab farabi', 'bb', 'use11r@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1223', 'company', 1702996733, '2023-12-19 08:38:53', '2023-12-19 08:38:53'),
+(8, 'ff', 'hh', 'ffr@gmail.com', '', 'AL', 'Los Angeles', 'ss', 'ff', '3456', 'company', 1702998510, '2023-12-19 09:08:30', '2023-12-19 09:08:30'),
+(9, 'farabi', 'rifat', 'farabi@gmail.com', '', 'AS', 'San Diego', 'badda', 'gulshan', '1212', 'Samsung', 1703060128, '2023-12-20 02:15:28', '2023-12-20 02:15:28'),
+(10, 'qq', 'ww', 'qq@curetechbd.com', '', 'US', 'divition', 'sde', 'ff', '1212', 'company', 1703068117, '2023-12-20 04:28:37', '2023-12-20 04:28:37'),
+(11, 'xx', 'cc', 'xx@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1212', 'company', 1703071280, '2023-12-20 05:21:20', '2023-12-20 05:21:20'),
+(13, 'salim', 'hosen', 'salim@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1212', 'company', 1703073423, '2023-12-20 05:57:03', '2023-12-20 05:57:03'),
+(14, 'check', 'up', 'check@gmail.com', '', 'US', 'divition', 'gulshan', 'one', '1343', 'company', 1703073500, '2023-12-20 05:58:20', '2023-12-20 05:58:20');
 
 -- --------------------------------------------------------
 
@@ -383,7 +403,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
