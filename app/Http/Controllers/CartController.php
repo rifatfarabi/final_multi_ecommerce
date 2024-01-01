@@ -14,7 +14,9 @@ class CartController extends Controller
 
     public function index()
     {
-        $carts = Cart::all();
+        $session_data = session()->get('name');
+        $carts = Cart::where('temp_user_id', $session_data)->get();
+        dd($carts);
        return view('cart.index',compact('carts'));
     }
 
@@ -61,7 +63,7 @@ class CartController extends Controller
 
     public function destroy(string $id)
     {
-        //
+
     }
 
     public function addQuantity($id){

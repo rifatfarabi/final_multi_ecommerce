@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Order\StoreOrderRequest;
+use App\Models\Cart;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,6 @@ class OrderController extends Controller
     {
         //
     }
-
 
     public function create()
     {
@@ -41,7 +41,8 @@ class OrderController extends Controller
             "order_id" => $order_code,
         ]);
 
-        $checkout->delete();
+        $session_data = session()->get('name');
+        $cart = Cart::where('temp_user_id', $session_data)->delete();
         return redirect()->route('order.show', $checkout->id);
     }
 
