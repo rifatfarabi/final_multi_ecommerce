@@ -237,7 +237,8 @@
                                 </div>
                                 <div class="sinlge-bar shopping">
                                     @php
-                                        $carts = \App\Models\Cart::where('temp_user_id', 'HuFWR')->get();
+                                        $session_data = session()->get('name');
+                                        $carts = \App\Models\Cart::where('temp_user_id', $session_data)->get();
                                     @endphp
                                     <a href="#" class="single-icon"><i class="ti-bag"></i> <span
                                             class="total-count">{{ count($carts) }}</span></a>
