@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
@@ -54,6 +55,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('brands', BrandController::class);
-    Route::resource('orders', OrderController::class);
+    Route::resource('orders', AdminOrderController::class);
 });
 

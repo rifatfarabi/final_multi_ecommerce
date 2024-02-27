@@ -380,7 +380,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-12">
                                 <div class="left">
-                                    <p>Copyright © 2020 <a href="http://www.wpthemesgrid.com"
+                                    <p>Copyright © 2024 <a href="http://www.wpthemesgrid.com"
                                             target="_blank">Wpthemesgrid</a> - All Rights Reserved.</p>
                                 </div>
                             </div>
