@@ -16,7 +16,7 @@ class CartController extends Controller
     {
         $session_data = session()->get('name');
         $carts = Cart::where('temp_user_id', $session_data)->get();
-        dd($carts);
+        // dd($carts);
        return view('cart.index',compact('carts'));
     }
 
