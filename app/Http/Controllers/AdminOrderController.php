@@ -39,6 +39,7 @@ class AdminOrderController extends Controller
     public function show(string $id)
     {
         $order = Order::find($id);
+        
         return view('salesOrder.show', compact('order'));
     }
 

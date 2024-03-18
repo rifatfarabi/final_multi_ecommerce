@@ -22,4 +22,9 @@ class Order extends Model
         "company",
         "order_id",
     ];
+
+    public function orderitems(): HasMany
+    {
+        return $this->hasMany(Orderitem::class);
+    }
 }

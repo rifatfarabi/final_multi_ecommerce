@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Order\StoreOrderRequest;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Orderitem;
 use Illuminate\Http\Request;
 
 use function PHPUnit\TextUI\XmlConfiguration\php;
@@ -40,6 +41,20 @@ class OrderController extends Controller
             "company" => $request->company,
             "order_id" => $order_code,
         ]);
+
+
+        $session_data = session()->get('name');
+        $carts = Cart::where('temp_user_id', $session_data)->get();
+
+        foreach($carts as $cartitem){
+            $orderItems = Orderitem::create([
+                "order_id" => $order_code,
+                "product_id" => $cartitem->product_id,
+                "quantity" => $cartitem->quantity,
+                "unit_price" => $cartitem->products->unit_price,
+            ]);
+        }
+
 
         $session_data = session()->get('name');
         $cart = Cart::where('temp_user_id', $session_data)->delete();
