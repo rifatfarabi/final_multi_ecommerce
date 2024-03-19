@@ -68,7 +68,7 @@
                                                 data-max="100" value="{{ $cart->quantity }}">
                                             <div class="button plus">
                                                 <a href="{{ route('quantity.plus', $cart->id )}}"
-                                                    class="btn btn-primary " >
+                                                    class="btn btn-primary">
                                                     <i class="ti-plus"></i>
                                                 </a>
                                             </div>
@@ -323,7 +323,7 @@
 @endsection
 
 
-{{-- @section('scripts')
+@section('scripts')
 
 <script>
 
@@ -347,4 +347,4 @@ $(document).ready(function() {
 
 </script>
 
-@endsection --}}
+@endsection

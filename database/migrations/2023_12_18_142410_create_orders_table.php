@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('address_line2')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('company')->nullable();
-            $table->string('order_id');
             $table->timestamps();
         });
     }

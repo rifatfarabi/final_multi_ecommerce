@@ -39,7 +39,6 @@ class OrderController extends Controller
             "address_line2" => $request->address_line2,
             "postal_code" => $request->postal_code,
             "company" => $request->company,
-            "order_id" => $order_code,
         ]);
 
 
@@ -47,11 +46,12 @@ class OrderController extends Controller
         $carts = Cart::where('temp_user_id', $session_data)->get();
 
         foreach($carts as $cartitem){
+            // dd($cartitem->product);
             $orderItems = Orderitem::create([
-                "order_id" => $order_code,
+                "order_id" => $checkout->id,
                 "product_id" => $cartitem->product_id,
                 "quantity" => $cartitem->quantity,
-                "unit_price" => $cartitem->products->unit_price,
+                "unit_price" => $cartitem->product->unit_price,
             ]);
         }
 

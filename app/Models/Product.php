@@ -9,7 +9,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'product_id';
 
     protected $fillable =[
         "name",
@@ -35,8 +34,5 @@ class Product extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function cart(){
-        return $this->belongsTo(Cart::class);
-    }
 
 }

@@ -20,7 +20,7 @@ class Order extends Model
         "address_line2",
         "postal_code",
         "company",
-        "order_id",
+        // "order_id",
     ];
 
     public function orderitems(): HasMany
