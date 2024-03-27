@@ -15,12 +15,18 @@ class Order extends Model
         "email",
         "phone",
         "country",
+        "shipping_cost",
+        "payment_type",
+        "grand_total",
+        "coupon_discount",
+        "delivery_time",
+        "reward_discount",
         "state_division",
         "address_line1",
         "address_line2",
         "postal_code",
         "company",
-        // "order_id",
+        "order_code",
     ];
 
     public function orderitems(): HasMany

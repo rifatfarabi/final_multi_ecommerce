@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Orderitem;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
@@ -13,8 +14,9 @@ class AdminOrderController extends Controller
     public function index()
     {
         $orders = Order::paginate(15);
+        $orderitems = Orderitem::all();
         // $orders = Order::where('id','desc')->paginate(10);
-        return view('salesOrder.index', compact('orders'));
+        return view('salesOrder.index', compact('orders','orderitems'));
     }
 
     /**
@@ -39,7 +41,7 @@ class AdminOrderController extends Controller
     public function show(string $id)
     {
         $order = Order::find($id);
-        
+
         return view('salesOrder.show', compact('order'));
     }
 

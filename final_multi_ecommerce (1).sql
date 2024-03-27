@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 02:04 PM
+-- Generation Time: Mar 27, 2024 at 10:38 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,9 +66,14 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `quantity`, `product_id`, `user_id`, `temp_user_id`, `created_at`, `updated_at`) VALUES
-(49, '1', '10', NULL, 'HuFWR', '2023-12-10 02:21:00', '2023-12-18 00:17:35'),
-(50, '1', '13', NULL, 'HuFWR', '2023-12-10 06:15:04', '2023-12-17 07:53:32'),
-(52, '2', '15', NULL, 'HuFWR', '2023-12-11 01:47:02', '2023-12-17 08:00:14');
+(80, '123', '14', NULL, '7xSiT', '2024-03-24 00:57:17', '2024-03-24 00:57:17'),
+(85, '1', '11', NULL, '98c0p', '2024-03-25 01:16:06', '2024-03-25 01:16:06'),
+(86, '123', '13', NULL, '98c0p', '2024-03-25 01:16:11', '2024-03-25 01:16:11'),
+(97, '1', '11', NULL, 'ENjX1', '2024-03-27 02:49:20', '2024-03-27 02:49:20'),
+(98, '1', '15', NULL, 'ENjX1', '2024-03-27 02:49:28', '2024-03-27 02:49:28'),
+(99, '1', '13', NULL, 'ENjX1', '2024-03-27 02:49:36', '2024-03-27 02:49:36'),
+(100, '1', '11', NULL, 'ENjX1', '2024-03-27 02:49:51', '2024-03-27 02:49:51'),
+(101, '1', '12', NULL, 'ENjX1', '2024-03-27 02:59:12', '2024-03-27 02:59:12');
 
 -- --------------------------------------------------------
 
@@ -138,7 +143,39 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (36, '2023_11_07_054621_create_brands_table', 2),
 (38, '2023_11_07_054622_create_products_table', 3),
 (40, '2023_11_26_062710_create_carts_table', 4),
-(41, '2023_12_18_142410_create_orders_table', 5);
+(41, '2023_12_18_142410_create_orders_table', 5),
+(42, '2024_03_18_054428_create_orderitems_table', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderitems`
+--
+
+CREATE TABLE `orderitems` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `quantity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unit_price` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orderitems`
+--
+
+INSERT INTO `orderitems` (`id`, `order_id`, `product_id`, `quantity`, `unit_price`, `created_at`, `updated_at`) VALUES
+(6, 71, 11, '1', 12222, '2024-03-24 23:42:51', '2024-03-24 23:42:51'),
+(7, 71, 15, '12', 400, '2024-03-24 23:42:51', '2024-03-24 23:42:51'),
+(8, 72, 14, '123', 40, '2024-03-24 23:47:59', '2024-03-24 23:47:59'),
+(9, 72, 13, '123', 1400, '2024-03-24 23:47:59', '2024-03-24 23:47:59'),
+(10, 73, 11, '1', 12222, '2024-03-27 01:13:16', '2024-03-27 01:13:16'),
+(11, 73, 13, '123', 1400, '2024-03-27 01:13:16', '2024-03-27 01:13:16'),
+(12, 73, 10, '123', 12, '2024-03-27 01:13:16', '2024-03-27 01:13:16'),
+(13, 74, 10, '123', 12, '2024-03-27 01:15:58', '2024-03-27 01:15:58'),
+(14, 74, 15, '12', 400, '2024-03-27 01:15:58', '2024-03-27 01:15:58');
 
 -- --------------------------------------------------------
 
@@ -153,12 +190,18 @@ CREATE TABLE `orders` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shipping_cost` int(11) NOT NULL,
+  `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grand_total` int(11) NOT NULL,
+  `coupon_discount` int(11) NOT NULL,
+  `delivery_time` date DEFAULT NULL,
+  `reward_discount` int(11) NOT NULL,
   `state_division` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address_line1` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address_line2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `order_id` int(20) NOT NULL,
+  `order_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -167,20 +210,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `first_name`, `last_name`, `email`, `phone`, `country`, `state_division`, `address_line1`, `address_line2`, `postal_code`, `company`, `order_id`, `created_at`, `updated_at`) VALUES
-(1, 'ab farabi', 'fsdf', 'user@gmail.com', '', 'US', 'divition', 'ddd', 'rr', '2232', 'company', 0, '2023-12-19 01:06:38', '2023-12-19 01:06:38'),
-(2, 'ab farabi', 'fsdf', 'user@gmail.com', '', 'US', 'divition', 'ddd', 'rr', '2232', 'company', 0, '2023-12-19 01:07:13', '2023-12-19 01:07:13'),
-(3, 'gaura', 'Selim', 'sm@gmail.com', '', 'US', 'divition', 'konabari', 'gazipur', '1234', 'company', 0, '2023-12-19 01:08:26', '2023-12-19 01:08:26'),
-(4, 'bb', 'nn', 'bb@gmail.com', '', 'US', 'divition', 'ww', 'tt', '3245', 'company', 1702971125, '2023-12-19 01:32:05', '2023-12-19 01:32:05'),
-(5, 'ab farabi', 'bb', 'use11r@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1223', 'company', 1702971255, '2023-12-19 01:34:15', '2023-12-19 01:34:15'),
-(6, 'ab farabi', 'bb', 'use11r@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1223', 'company', 1702996265, '2023-12-19 08:31:05', '2023-12-19 08:31:05'),
-(7, 'ab farabi', 'bb', 'use11r@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1223', 'company', 1702996733, '2023-12-19 08:38:53', '2023-12-19 08:38:53'),
-(8, 'ff', 'hh', 'ffr@gmail.com', '', 'AL', 'Los Angeles', 'ss', 'ff', '3456', 'company', 1702998510, '2023-12-19 09:08:30', '2023-12-19 09:08:30'),
-(9, 'farabi', 'rifat', 'farabi@gmail.com', '', 'AS', 'San Diego', 'badda', 'gulshan', '1212', 'Samsung', 1703060128, '2023-12-20 02:15:28', '2023-12-20 02:15:28'),
-(10, 'qq', 'ww', 'qq@curetechbd.com', '', 'US', 'divition', 'sde', 'ff', '1212', 'company', 1703068117, '2023-12-20 04:28:37', '2023-12-20 04:28:37'),
-(11, 'xx', 'cc', 'xx@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1212', 'company', 1703071280, '2023-12-20 05:21:20', '2023-12-20 05:21:20'),
-(13, 'salim', 'hosen', 'salim@gmail.com', '', 'US', 'divition', 'badda', 'link road', '1212', 'company', 1703073423, '2023-12-20 05:57:03', '2023-12-20 05:57:03'),
-(14, 'check', 'up', 'check@gmail.com', '', 'US', 'divition', 'gulshan', 'one', '1343', 'company', 1703073500, '2023-12-20 05:58:20', '2023-12-20 05:58:20');
+INSERT INTO `orders` (`id`, `first_name`, `last_name`, `email`, `phone`, `country`, `shipping_cost`, `payment_type`, `grand_total`, `coupon_discount`, `delivery_time`, `reward_discount`, `state_division`, `address_line1`, `address_line2`, `postal_code`, `company`, `order_code`, `created_at`, `updated_at`) VALUES
+(71, 'joynal', 'abedin', 'abedin@gmail.com', '', 'US', 0, '', 0, 0, NULL, 0, 'divition', 'badda', 'link road', '1212', 'company', '1711345371', '2024-03-24 23:42:51', '2024-03-24 23:42:51'),
+(72, 'Ab', 'farabi', 'ab@gmail.com', '', 'US', 0, '', 0, 0, NULL, 0, 'divition', 'kuril', 'Bisso road', '1209', 'company', '1711345679', '2024-03-24 23:47:59', '2024-03-24 23:47:59'),
+(73, 'fazle', 'rabbi', 'fz@gmail.com', '01409978801', 'AL', 10, 'COD', 500, 0, '2010-03-24', 0, 'divition', 'konabari', 'gazipur', '1234', 'company', '1711523596', '2024-03-27 01:13:16', '2024-03-27 01:13:16'),
+(74, 'Jalal', 'Mirza', 'jm.curetech@gmail.com', '01409978801', 'BD', 10, 'COD', 500, 0, '2010-03-24', 0, 'divition', 'gazipur', 'dhaka', '1234', 'company', '1711523758', '2024-03-27 01:15:58', '2024-03-27 01:15:58');
 
 -- --------------------------------------------------------
 
@@ -255,10 +289,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `unit`, `user_id`, `category_id`, `brand_id`, `purchase_qty`, `refundable`, `thumbnail_image`, `unit_price`, `quantity`, `description`, `sku`, `featured`, `created_at`, `updated_at`) VALUES
-(10, 'Butter', 12, 1, 25, NULL, 1, 0, '1701089897.jpg', 12, '123', NULL, 'best rice', 0, '2023-11-27 05:13:32', '2023-11-27 06:58:17'),
-(11, 'new', 33, 1, 17, 3, 3, 1, '1701086486.jpg', 12222, '1', 'rice miniket', 'rr', 1, '2023-11-27 06:01:26', '2023-11-27 06:01:26'),
-(12, 'Nevia lotion', 12, 1, 21, NULL, 12, 1, '1701089823.jpg', 12, '12', NULL, 'n', 1, '2023-11-27 06:57:03', '2023-11-27 06:57:03'),
-(13, 'Baby Pad', 12, 1, 25, NULL, 1, 1, '1701089863.jpg', 1400, '123', NULL, 'p', 1, '2023-11-27 06:57:43', '2023-11-27 06:57:43'),
+(10, 'Butter', 12, 1, 25, NULL, 1, 0, '1701089897.jpg', 120, '123', NULL, 'best rice', 0, '2023-11-27 05:13:32', '2023-11-27 06:58:17'),
+(11, 'new', 33, 1, 17, 3, 3, 1, '1701086486.jpg', 220, '1', 'rice miniket', 'rr', 1, '2023-11-27 06:01:26', '2023-11-27 06:01:26'),
+(12, 'Nevia lotion', 12, 1, 21, NULL, 12, 1, '1701089823.jpg', 50, '12', NULL, 'n', 1, '2023-11-27 06:57:03', '2023-11-27 06:57:03'),
+(13, 'Baby Pad', 12, 1, 25, NULL, 1, 1, '1701089863.jpg', 140, '123', NULL, 'p', 1, '2023-11-27 06:57:43', '2023-11-27 06:57:43'),
 (14, 'salt', 500, 1, 21, NULL, 1, 1, '1701092329.jpg', 40, '123', 'best salt', 'lobon', 1, '2023-11-27 07:38:49', '2023-11-27 07:38:49'),
 (15, 'orange', 1000, 1, 21, 3, 1, 1, '1701093742.jpg', 400, '12', 'best orange', 'or', 1, '2023-11-27 08:02:22', '2023-11-27 08:02:22');
 
@@ -325,6 +359,14 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orderitems`
+--
+ALTER TABLE `orderitems`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orderitems_order_id_foreign` (`order_id`),
+  ADD KEY `orderitems_product_id_foreign` (`product_id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -379,7 +421,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -397,13 +439,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `orderitems`
+--
+ALTER TABLE `orderitems`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -426,6 +474,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `orderitems`
+--
+ALTER TABLE `orderitems`
+  ADD CONSTRAINT `orderitems_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orderitems_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `products`

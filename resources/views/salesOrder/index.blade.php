@@ -53,16 +53,16 @@
                         <tr>
                             {{-- <td>{{ $key + 1 }}</td> --}}
                             {{-- <td>{{ $key + 1 + ($orders->currentPage() - 1) * $orders->perPage() }}</td> --}}
-                            <td>{{ $order->order_id }}</td>
+                            <td>{{ $order->order_code }}</td>
                             <td>{{ $order->first_name }}</td>
-                            <td>{{ $order->email }}</td>
+                            <td>{{ $order->phone }}</td>
                             <td>{{ $order->state_division }}</td>
-                            <td>{{ $order->featured }}</td>
-                            <td>{{ $order->featured }}</td>
-                            <td>{{ $order->featured }}</td>
+                            <td>{{ $order->grand_total }}</td>
+                            <td>{{ $order->unpaid }}</td>
+                            <td>{{ $order->unpaid }}</td>
                             <td>{{ $order->created_at }}</td>
                             <td>{{ $order->created_at}}</td>
-                            <td>{{ $order-> featured}}</td>
+                            <td>{{ $order->featured}}</td>
 
 
                             <td>

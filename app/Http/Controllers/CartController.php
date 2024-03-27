@@ -16,7 +16,6 @@ class CartController extends Controller
     {
         $session_data = session()->get('name');
         $carts = Cart::where('temp_user_id', $session_data)->get();
-        // dd($carts);
        return view('cart.index',compact('carts'));
     }
 
@@ -40,7 +39,7 @@ class CartController extends Controller
         $cart = new Cart();
         $cart->product_id = $product->id;
         // $cart->user_id = $user->id;
-        $cart->quantity = $product->quantity;
+        $cart->quantity = $cart->quantity + 1;
 
         if($session_data)
         {
@@ -66,7 +65,7 @@ class CartController extends Controller
 
     }
 
-    public function addQuantity($id){
+    public function addQuantity(Request $request, string $id){
 
         $cart = Cart::find($id);
         $cart->update([

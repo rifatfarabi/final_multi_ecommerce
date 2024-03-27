@@ -16,13 +16,18 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone');
-            $table->string('country');
+            $table->string('shipping_cost')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('grand_total')->nullable();
+            $table->string('coupon_discount')->nullable();
+            $table->string('delivery_time')->nullable();
+            $table->string('reward_discount')->nullable();
             $table->string('state_division');
             $table->string('address_line1');
             $table->string('address_line2')->nullable();
             $table->string('postal_code')->nullable();
             $table->string('company')->nullable();
+            $table->string('order_code');
             $table->timestamps();
         });
     }
